@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#talkbubble {
+				width: 120px;
+				height: 80px;
+				position: relative;
+				-moz-border-radius: 10px;
+				-webkit-border-radius: 10px;
+				border-radius: 10px;
+				-moz-border-top-left-radius:0 ;
+				-webkit-border-top-left-radius:0 ;
+				border-top-left-radius:0 ;
+				border: 1px #808080 solid;
+				background-color: #fff;
+				margin: 100px auto;
+			}
+			
+			#talkbubble:before {
+				content: " ";
+				position: absolute;
+				top: -1%;
+    			left: -15px;
+				width: 0;
+				height: 0;
+				border-top: 15px solid #808080;
+    			border-left: 15px solid transparent; 
+			}
+			
+			#talkbubble:after {
+				content: " ";
+				position: absolute;
+				top: 0;
+    			left: -13px;
+				width: 0;
+				height: 0;
+				border-top: 14px solid #fff;
+    			border-left: 14px solid transparent;
+			}
+			img{
+				display: block;
+				margin: 400px auto;
+				transform:scaleX(4);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="talkbubble" class="inlayer">
+			空心三角形
+		</div>
+		
+		<div>
+			<img src="img/new image - wklys.jpg">
+		</div>
+	</body>
+
+</html>

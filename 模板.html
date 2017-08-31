@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<script src="js/vue-resource0.7.0.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'112233'
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<a href='http://www.divcss5.com/jiqiao/j510.shtml' target='_ablank' 
+			title='标 题：DIVCSS5
+			作 者：DIVCSS5 
+			转 贴 自：CSS原创 
+			更新时间：2013-05-17 
+			推荐等级：无 
+			关键字：title换行 
+			分页方式：不分页 
+			阅读等级：普通'>
+			html title属性换行
+		</a> 
+		<div id="box" title="<span style='display:block;'>123</span>">
+			<input type="text" v-model="msg" />
+			{{msg}}
+			<br>
+			{{*msg}} <!--数据只绑定一次-->
+			<br>
+			{{{msg}}} <!--转义--> 
+			<br>
+			<br>
+			<br>
+			<!--过滤器-->
+			{{'abcde'|uppercase}} 
+			{{'abcde'|capitalize}}  <!--首字母大写-->
+			{{'ABCDE'|lowercase}}
+			{{'abcde'|uppercase|capitalize}}
+			{{123|currency}}
+			{{123|currency '￥'}}
+		</div>
+	</body>
+</html>

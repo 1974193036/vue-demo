@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+    .a {    
+        background: linear-gradient(to bottom, #DADADA, #000);
+        border-radius: 1px solid red;
+    }
+    </style>
+    <script src="js/vue1.0.26.js"></script>
+    <script src="js/vue-resource0.7.0.js"></script>
+    <script>
+    window.onload = function() {
+        var vm = new Vue({ el: "#box", data: { a: "112233", b: "2", json: { name: "strive", age: 16 }, } });
+        document.onclick = function() {
+            vm.a = 1;
+            vm.json.name = "aaa";
+            vm.$watch("a", function() {
+                alert("发生变化了");
+                this.b = this.a + 100
+            });
+            vm.$watch("json", function() {
+                console.log("发生变化了");
+                this.json.age = "100"
+            }, { deep: true })
+        }
+    };
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        {{a}} {{b}} {{json | json}}
+    </div>
+    
+</body>
+
+</html>

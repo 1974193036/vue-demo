@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<script src="js/vue-resource0.7.0.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#box',
+					data:{
+						
+					},
+					methods:{
+						/*get:function(){
+							this.$http.get('get.php',{a:1,b:2}).success(function(response) {
+								console.log(response);
+							}).error(function(response){
+								console.log(response);
+							})
+						}*/
+						/*get:function(){
+							this.$http.post('post.php',{a:1,b:2},{emulateJSON:true}).success(function(response) {
+								console.log(response);
+							}).error(function(response){
+								console.log(response);
+							})
+						}*/
+						/*https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=a*/
+						/*get:function(){
+							this.$http.jsonp('https://sug.so.360.cn/suggest',{'word':'a'}).success(function(response) {
+								console.log(response);
+							}).error(function(response){
+								console.log(response);
+							})
+						}*/
+						/*https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&json=1&p=3&sid=1455_19036_21099_17001_22160&req=2&csor=1&cb=jQuery110204251830398108165_1495555963424&_=1495555963427*/
+						get:function(){
+							this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{'wd':'a'},{'jsonp':'cb'}).success(function(response) {
+								console.log(response);
+							}).error(function(response){
+								console.log(response);
+							})
+						}
+						
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" value="get获取数据" @click="get()"/>
+		</div>
+	</body>
+</html>

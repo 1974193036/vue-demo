@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue2.0.3.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			{{msg}}
+			<my-aaa></my-aaa>
+		</div>
+		<script>
+			Vue.component('my-aaa', {
+				data() {
+					return {
+						msg: '我是组件data'
+					}
+				},
+				methods:{
+					change(){
+						this.msg = '111';
+					}
+				},
+				template: '<div><h3 @click="change()">{{msg}}</h3><strong>我是加粗标签</strong></div>'
+			});
+
+			new Vue({
+				el: '#box',
+				data: {
+					msg: 'welcome vue2.0'
+				}
+			});
+		</script>
+	</body>
+
+</html>

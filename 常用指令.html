@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.sanjiao{
+				width: 0;
+			    height: 0;
+			    border-top: 100px solid red;
+    			border-left: 100px solid transparent; 
+    			float: left;
+			}
+			.con{
+				width: 300px;
+				height: 200px;
+				border: 1px solid black;
+				float: left;
+				margin-left: 10px;
+			}
+		</style>
+		<script src="js/vue1.0.26.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'welcome vue',
+						msg2:'222',
+						msg3:true,
+						arr:['apple','banana','orange'],
+						json:{a:'apple',b:'banana',c:'orange'}
+					},
+					methods:{
+						add:function(){
+							console.log(this.arr);
+							this.arr.push('tomato');
+						}
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<!--<div>
+			<div class="sanjiao"></div>
+			<div class="con"></div>
+		</div>-->
+		
+		<div id="box">
+			<input type="text" v-model="msg" />
+			{{msg}}
+			<br>
+			{{msg2}}
+			<br>
+			{{msg3}}
+			<br>
+			{{arr}}
+			<br>
+			{{json}}
+			<!-----------------------------循环---------------------------------------->
+			<ul>
+				<li v-for="x in arr" track-by="$index">{{$index}} {{x}}</li>
+			</ul>
+			<hr>
+			<!--<ul>
+				<li v-for="item in json">
+					{{$index}} {{item}} {{$key}}
+				</li>
+			</ul>
+			<hr>
+			<ul>
+				<li v-for="(k,v) in json">
+					{{$index}} {{k}} {{v}} {{$key}}
+				</li>
+			</ul>-->
+			<!-----------------------------------------点击事件---------------------------------->
+			<input type="button" value="按钮" v-on:click="add()"/>
+		
+		</div>
+	</body>
+</html>

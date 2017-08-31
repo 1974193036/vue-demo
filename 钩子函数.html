@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			{{msg}}
+		</div>
+	</body>
+</html>
+<script>
+	var vm=new Vue({
+		el:'#box',
+		data:{
+			msg:'welcome vue'
+		},
+		methods:{	
+				    	
+		},
+		created:function(){
+			alert('实例已经创建');
+		},
+		beforeCompile:function(){
+		    alert('编译之前');
+		},
+		compiled:function(){
+			alert('编译之后');
+		},
+		ready:function(){
+			alert('插入到文档中');
+		},
+		beforeDestroy:function(){
+			alert('销毁之前');
+		},
+		destroyed:function(){
+            alert('销毁之后');
+        }
+	});
+	/*点击页面销毁vue对象*/
+    document.onclick=function(){
+        vm.$destroy();
+    };
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<script src="js/vue-resource0.7.0.js"></script>
+		<script>
+			window.onload=function(){
+				/*按下ctrl事件*/
+				Vue.directive('on').keyCodes.ctrl=17; 
+				
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'112233'						
+					},
+					methods:{
+						show:function(){
+                        	alert(1);
+                    	}
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<!--按下a事件-->
+			<input type="text" @keydown.a="show()">
+			<input type="text" @keydown.ctrl="show() | debounce 2000">
+		</div>
+	</body>
+</html>

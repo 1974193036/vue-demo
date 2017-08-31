@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/vue2.0.3.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="box">
+        父级: ->{{giveData.a}}
+        <br>
+        {{b}}
+        <!-- vue1.0可以sync可以同步子组件更改父组件信息 2.0不行报错-->
+        <!-- @child-msg可以把子组件数据发送给父组件 -->
+        <child-com :mm="giveData"></child-com>
+        
+    </div>
+    
+    <template id="child">
+        <div>
+            <span>我是子组件</span>
+            <input type="button" value="按钮" @click="change">
+            <strong>{{b}}</strong>
+        </div>
+    </template>
+
+    
+    <!--子组件获取父组件数据-->
+    <script>
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                a:'我是父组件数据',
+                b:'我是父组件数据2222',
+                giveData:{
+                   a:'我是父组件数据giveData' 
+                }
+            },
+            methods:{
+                get(msg){
+                    this.b=msg;
+                }
+            },
+            components:{
+                'child-com':{
+                    template:'#child',
+                    data(){
+                        return{
+                            msgChild:'我是子组件123',
+                            b:''
+                        }
+                    },
+                    mounted(){
+                        this.b=this.mm;
+                    },
+                    methods:{
+                        change(){
+                            /*this.mm='被更改了';*/
+                            /*this.$emit('child-msg',this.msgChild);*/
+                            /*this.mm.a='被更改了';*/
+                            this.b.a='被更改了';
+                        }
+                    },
+                    props:['mm']
+                }
+            }
+        });
+
+    </script>
+
+
+
+    <a href="http://10.226.76.181:8282/ltl-front-end-special-line" target="_blank">11123234234324234</a>
+</body>
+</html>

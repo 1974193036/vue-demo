@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue1.0.26.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+		<aaa></aaa>
+	</div>
+	<!--默认情况下子组件无法享受父组件的数据-->
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'aaa':{
+					data(){
+						return {
+							msg:'我是父组件数据'
+						}
+					},
+					template:'<h2>我是aaa组件</h2>'+'<h6>{{msg}}</h6><bbb></bbb>',
+					components:{
+						'bbb':{
+							template:'<h2>我是bbb组件</h2>'
+						}
+					}
+				}	
+			}
+		});
+
+	</script>
+</body>
+</html>

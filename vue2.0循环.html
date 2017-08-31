@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue2.0.3.js"></script>
+	</head>
+	<body>
+		<div id="box">
+        	{{msg}}
+        	<input type="button" value="添加" @click="add">
+        	<ul>
+        		<li v-for="val in arr" track-by="$index">{{val}}</li>
+        	</ul>
+        	<hr>
+        	<ol>
+        		<!--:key="index"类似于track-by="$index"唯一标识，提高循环性能-->
+        		<li v-for="(val,index) in arr" :key="index">{{index}}---{{val}}</li>
+        	</ol>
+        	<hr>
+        	<ul>
+        		<li v-for="(val,key) in list">{{key}}---{{val}}</li>
+        	</ul>
+		</div>
+	</body>
+</html>
+<script>
+	new Vue({
+		el:'#box',
+		data:{
+			msg:'123',
+			arr:['apple','banana','orange'],
+			list:{
+                a:'red',
+                b:'yellow',
+                c:'blue'
+            }
+		},
+		methods:{
+			add(){
+				this.arr.push('water');
+			}
+		}
+	})
+</script>

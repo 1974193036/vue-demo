@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue2.0.3.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			{{msg}}
+			<my-aaa></my-aaa>
+		</div>
+	</body>
+</html>
+<script>
+	var Home={
+		template:'<h3>我是组件</h3>'
+	};
+	new Vue({
+		el: '#box',
+		data: {
+			msg: 'welcome vue2.0'
+		},
+		components:{
+			'my-aaa': Home
+		}
+	});
+</script>

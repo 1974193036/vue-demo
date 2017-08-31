@@ -1,0 +1,68 @@
+{
+	"status": 1,
+	"slider": [
+		{
+			"img": "http://happyday.applinzi.com/img/slider.jpg",
+			"name": "鑫都儿童乐园3",
+			"dist": "9.1",
+			"address": "宣武区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/slider.jpg",
+			"name": "鑫都儿童乐园2",
+			"dist": "3.1",
+			"address": "西城区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/slider.jpg",
+			"name": "鑫都儿童乐园1",
+			"dist": "9.1",
+			"address": "宣武区"
+		}
+	],
+	"arealist": [
+		{
+			"img": "http://happyday.applinzi.com/img/spec1.jpg",
+			"href": "http://www.baidu.com"
+		}, {
+			"img": "http://happyday.applinzi.com/img/spec1.jpg",
+			"href": "http://www.baidu.com"
+		}
+	],
+	"reclist": [
+		{
+			"img": "http://happyday.applinzi.com/img/index1.png",
+			"name": "家家宝贝儿童乐2",
+			"dist": "7.5",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index2.png",
+			"name": "家家宝贝儿童乐园1",
+			"dist": "9.1",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index3.png",
+			"name": "家家宝贝儿童乐园",
+			"dist": "3.1",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index4.png",
+			"name": "天空之城动漫试听音乐会门票",
+			"dist": "9.1",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index1.png",
+			"name": "鑫都儿童乐园3",
+			"dist": "9.1",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index2.png",
+			"name": "鑫都儿童乐园2",
+			"dist": "3.1",
+			"address": "朝阳区"
+		}, {
+			"img": "http://happyday.applinzi.com/img/index3.png",
+			"name": "鑫都儿童乐园1",
+			"dist": "9.1",
+			"address": "朝阳区"
+		}
+	]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/vue1.0.26.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+		<my-aaa></my-aaa>
+	</div>
+
+	<script>
+		/*var my-aaa=Vue.extend({
+			template:'<h3>我是标题3</h3>'
+		});*/
+		
+		Vue.component('my-aaa',{
+			template:'<h3>{{123}}</h3>'
+		});
+
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				bSign:true
+			}
+		});
+
+	</script>
+</body>
+</html>

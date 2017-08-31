@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            p{
+                width:300px;
+                height:300px;
+                background: red;
+            }
+            .fade-enter-active,.fade-leave-active {
+                transition: all .5s;
+            }
+            /*初始状态*/
+            .fade-enter{
+                width:100px;
+                height:100px;
+                opacity: 0;               
+            }
+            /*初始激活状态 当元素出来变化成什么样*/
+            .fade-enter-active{
+                width:300px;
+                height:300px;
+                opacity: 1;
+            }
+            /*.fade-leave{
+                opacity:0;
+                width:100px;
+                height:100px;
+            }*/
+            /*当元素消失变化成什么样*/
+            .fade-leave-active{
+                opacity:0;
+                width:100px;
+                height:100px;
+            }
+        </style>
+        <script src="js/vue2.0.3.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="点击显示隐藏" @click="show=!show">
+            <transition name="fade">
+                <!-- 运动东西（元素，属性，路由） -->
+                <p v-show="show"></p>
+            </transition>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+           show:false
+        },
+        methods:{
+           
+        }
+    })
+</script>

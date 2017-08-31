@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="css/animate.css">
+        <style type="text/css">
+            p{
+                width:100px;
+                height:100px;
+                background: red;
+                margin:10px auto;
+            }
+        </style>
+        <script src="js/vue2.0.3.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" v-model="show">
+            <!-- 多个动画元素用transition-group -->
+            <transition-group enter-active-class="bounceInLeft" leave-active-class="bounceInRight">
+                <p v-show="show" class="animated" v-for="(val,index) in lists" :key="index">
+                    {{val}}
+                </p>
+            </transition-group>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+           show:'',
+           list:['apple','banana','orange','pear']
+        },
+        methods:{
+           
+        },
+        computed:{
+            lists:function(){
+                var arr=[];
+                this.list.forEach(function(val){
+                    console.log(val);
+                    console.log(typeof(val));
+                    if(val.indexOf(this.show)!=-1){
+                        arr.push(val);
+                    }
+                }.bind(this));
+                return arr;
+            }
+        }
+    })
+</script>

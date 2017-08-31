@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<script src="js/vue-resource0.7.0.js"></script>
+		<script>
+			window.onload=function(){
+				/*自定义属性指令*/
+				Vue.directive('red',function(){
+          			this.el.style.background='red';
+        	   	});		
+        		Vue.directive('blue',function(color){
+					console.log(color);
+          			this.el.style.background=color;
+        		});
+        		/*自定义一个属性指令	拖拽指令*/
+        		Vue.directive('drag',function(){
+        			var oDiv=this.el;
+        			oDiv.onmousedown=function(ev){
+//      				console.log(oDiv.offsetLeft);对象定位坐标
+		                var disX=ev.clientX-oDiv.offsetLeft; /*鼠标在对象内的位置*/
+		                var disY=ev.clientY-oDiv.offsetTop;
+		                document.onmousemove=function(ev){
+		                    var l=ev.clientX-disX;
+		                    var t=ev.clientY-disY;
+		                    oDiv.style.left=l+'px';
+		                    oDiv.style.top=t+'px';
+		                };
+		                document.onmouseup=function(){
+		                    document.onmousemove=null;
+		                    document.onmouseup=null;
+		                };
+            		};
+        		});
+        		
+     			/*自定义元素指令*/
+     			Vue.elementDirective('zns-red',{
+		            bind:function(){
+		                this.el.style.background='red';
+		            }
+        		});
+        		
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'112233',
+						a:'blue'
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<!--自定义属性指令-->
+			<span v-red>11</span>
+			<span v-blue="a">11</span>
+			<span v-blue="'yellow'">11</span>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			<div v-drag :style="{width:'100px', height:'100px', background:'blue', position:'absolute', right:0, top:0}"></div>
+			
+			<!--自定义元素指令-->
+			<zns-red>222</zns-red>
+		
+		</div>
+	</body>
+</html>

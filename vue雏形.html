@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			span{
+				/*box-shadow:0 0 10px 4px white;
+				text-shadow:0 0 10px #000;
+				opacity:0.8; 
+				color:rgba(0,0,0,0);
+				font-size: 25px;
+				font-weight: bold;*/
+			}
+			/*刷新闪烁不产生花括号,用在比较大的段落*/
+	        [v-cloak]{
+	            display: none;
+	        }
+		</style>
+		<script src="js/vue1.0.26.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'welcome vue',
+						msg1:'<h1>welcome vue</h1>'
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<span>{{msg}}</span>
+			<span v-text="msg"></span>  <!--防止数据闪烁-->
+			<span>{{{msg1}}}</span>
+			<span v-html="msg1"></span>  <!--防止数据闪烁-->
+			
+			<!--v-cloak大段落-->
+			
+		</div>
+		<ul class="box" v-cloak style="padding-top: 0px;padding-bottom:0px;border-left: 1px solid red;overflow: hidden;">
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+			<li>44</li>
+		</ul>
+		<a href="javascript:;"></a>
+		<span style="width: 1px;height: 52px;background: red;display: inline-block;position: absolute;left: 37px;top: 175px;    z-index: -999;"></span>
+	</body>
+</html>
+<script src="js/jquery-3.1.0.min.js"></script>
+
+
+<script>
+	var a=[];
+	for(var i=0;i<10;i++){
+		a[i]=function(){
+			console.log(i)
+		}	
+	}
+	a[6]() 
+
+	/*function foo() {
+  		setTimeout(() => {
+    		console.log('id:', this.id);
+  		}, 100);
+	}*/
+	
+	/*var id=1;
+	function foo() {
+  		var _this=this;
+  		setTimeout(function(){
+    		console.log('id:', _this.id);
+  		},100);
+	}*/
+	/*foo();*/
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue1.0.26.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+		<aaa></aaa>
+	</div>
+	
+	<template id="abc">
+		<div>{{msg}}</div>
+		<bbb :mm="msg" :my-msg="msg2"></bbb>
+	</template>
+	
+	<!--子组件获取父组件数据-->
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'aaa':{
+					data(){
+						return {
+							msg:'我是父组件数据',
+							msg2:'我是父组件数据2'
+						}
+					},
+					template:'#abc',
+					components:{
+						'bbb':{
+							props:['mm','myMsg'],
+							template:'<h2>我是bbb组件--->{{mm}}--->{{myMsg}}</h2>'
+						}
+					}
+				}	
+			}
+		});
+
+	</script>
+</body>
+</html>

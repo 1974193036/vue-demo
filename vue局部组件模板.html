@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<my-aaa></my-aaa>
+		</div>
+
+		<!--模板-->
+		<template id="aaa">
+			<ul>
+				<li v-for="val in arr">
+					{{val}}
+				</li>
+			</ul>
+			<h3 @click="change()">{{msg}}</h3>
+		</template>
+
+		<script>
+			var vm = new Vue({
+				el: '#box',
+				data: {
+					bSign: true
+				},
+				components: { //局部组件
+					'my-aaa': {
+						data() {
+							return {
+								msg: '我是标题',
+								arr:['apple','banana','orange']
+							}
+						},
+						methods: { //组件内加事件
+							change() {
+								this.msg = '111';
+							}
+						},
+						template: '#aaa'
+					}
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

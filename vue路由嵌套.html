@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		.v-link-active{
+			color: #f60;
+		}
+		</style>
+		<script src="js/vue1.0.26.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<a v-link="{path:'/home'}">主页</a>
+			<a v-link="{path:'/news'}">新闻</a>
+			<div>
+				<!--展示内容-->
+				<router-view></router-view>
+			</div>
+		</div>
+		
+		<template id="home">
+			<h3>我是主页</h3>
+			<div>
+				<a v-link="{path:'/home/login'}">登录◆</a>
+				<a v-link="{path:'/home/register/sss/111'}">注册◆</a>
+			</div>
+			<div>
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		<template id="news">
+			<h3>我是新闻</h3>
+			<div>
+				<a v-link="{path:'/news/detail/001?a=1&b=22'}">新闻001</a>
+				<a v-link="{path:'/news/detail/002?a=1&b=3'}">新闻002</a>
+			</div>
+			<router-view></router-view>
+		</template>
+		
+		<template id="loginContent">
+			<a v-link="{path:'/home/login/content'}">我是登录内容</a>
+			<div>
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		<template id="detail">
+			{{$route.params | json}}
+			<br>
+			{{$route.path}}
+			<br>
+			{{$route.query | json}}
+			<br>
+			我是新闻{{$route.params.id123}}
+		</template>
+	
+	</body>
+</html>
+<script>
+	/*准备一个根组件*/
+	var App=Vue.extend();
+	
+	/*准备home,news组件*/
+	var Home=Vue.extend({
+		template:'#home'
+	});
+	var News=Vue.extend({
+		template:'#news'
+	});
+	
+	var denglu=Vue.extend({
+		template:'#loginContent'
+	});
+	
+	var Detail=Vue.extend({
+		template:'#detail'
+	});
+		
+	/*准备路由*/
+	var router=new VueRouter();
+	
+	/*关联*/
+	router.map({
+		'home':{
+			component:Home,
+			subRoutes:{
+				'login':{
+					component:denglu,
+					subRoutes:{
+						'content':{
+							component:{
+								template:'<strong>我是登录内容</strong>'
+							}
+						}						
+					}
+				},
+				'register/:name/:age':{
+					component:{
+						template:'<strong>我是注册信息{{$route.params | json}}</strong>'
+					}
+				}
+			}
+		},
+		'news':{
+			component:News,
+			subRoutes:{
+				'/detail/:id123':{
+					component:Detail
+				}
+				/*'detail/002':{
+					component:{
+						template:'<strong>我是新闻002</strong>'
+					}
+				},
+				'detail/001':{
+					component:{
+						template:'<strong>我是新闻001</strong>'
+					}
+				}*/
+			}
+		}
+	});
+	
+	/*启动路由*/
+	router.start(App,'#box');
+	
+	/*跳转 ,进入页面默认显示主页*/
+	router.redirect({
+		'/':'/home'
+	});
+	
+</script>

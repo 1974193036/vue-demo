@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+		<script>
+			window.onload=function(){
+				/*自定义过滤器*/
+				Vue.filter('toDou',function(input){
+            		return input<10?'0'+input:''+input;	
+        		});
+        		Vue.filter('date',function(input){
+          			var oDate=new Date(input);
+          			var hours=oDate.getHours();
+          			hours=hours<10?'0'+hours:hours;
+            		return oDate.getFullYear()+'-'+(oDate.getMonth()+1)+'-'+oDate.getDate()+' '+hours+':'+oDate.getMinutes()+':'+oDate.getSeconds();
+        		});
+        		/*双向过滤器*/
+        		Vue.filter('filterHtml',{
+        			//model-view
+            		read:function(input){ 
+                		return input.replace(/<[^<]+>/g,'');
+            		},
+            		//view -> model
+		            write:function(val){ 
+		                console.log(val);
+		                return val;
+		            }
+        		});
+        		
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'welcome vue',
+						a:'',
+						arr:[1,2,3,4,5],
+						arrO:['width','height','background','orange'],
+						timeArrow:Date.now(),
+						msgHtml:'<h1>welcome</h1>'
+					},
+					methods:{
+						show:function(a){
+							alert(a);
+						}
+					}
+				});			
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<span>{{msg}}</span>
+			<!--延迟执行事件debounce-->
+			<input type="text" @keyup="show(a) | debounce 2000" v-model="a"/>
+			<!--数据配合limitBy限制几位-->
+			<ul> 
+				<!--限制两位-->
+	            <li v-for="val in arr | limitBy 2">
+	                {{val}}
+	            </li>
+        	</ul>
+        	<ol>
+        		<!--从下标第3位开始取2位-->
+        		<li v-for="val in arr | limitBy 2 3">
+	                {{val}}
+	            </li>
+        	</ol>
+			<ul>
+        		<!--取倒数两位-->
+        		<li v-for="val in arr | limitBy 2 arr.length-2">
+	                {{val}}
+	            </li>
+        	</ul>
+        	<!--输入框输入过滤数据-->
+        	<input type="text" v-model="a">
+        	<ol>  
+        		<!--选取包含o的数据    orderBy 1为正序排序   -1为倒序   -->
+	            <li v-for="val in arrO | filterBy a | orderBy 1">
+                	{{val}}
+            	</li>
+        	</ol>
+        	
+        	<!--自定义过滤器-->
+        	{{9 | toDou}}
+        	
+        	<!--自定义时间转换器-->
+        	<div>{{timeArrow | date}}</div>
+        	
+        	<!--自定义过滤html标记-->
+        	<div>{{msgHtml}}</div>
+        	<div v-html="msgHtml"></div>
+        	<input type="text" v-model="msgHtml | filterHtml"/>
+        	
+        	
+		</div>
+	</body>
+</html>
+<script>
+	
+</script>

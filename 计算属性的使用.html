@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue1.0.26.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<p>{{a}}</p>
+			<p>{{b}}</p>
+		</div>
+	</body>
+</html>
+<script>
+	var vm=new Vue({
+		el:'#box',
+	    data:{
+			a:1
+		},
+		computed:{
+			/*默认get写法*/
+			/*b:function(){
+				return this.a*3
+			}*/
+			/*完整写法*/
+			b:{
+				get:function(){
+					return this.a*3
+				},
+				set:function(val){
+					/*alert(val); 101*/
+					this.a=val;
+				}
+			}
+		}
+	});
+	
+	document.onclick=function(){
+		/*vm.a=101;*/
+		vm.b=101;
+	};
+</script>

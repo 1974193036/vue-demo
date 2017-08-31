@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue2.0.3.js"></script>
+		<script>
+			window.onload=function(){
+				/*自定义过滤器*/
+				Vue.filter('toDou',function(input,a,b){
+					alert(a+' '+b);
+            		return input<10?'0'+input:''+input;	
+        		});
+  
+        		
+				new Vue({
+					el:'#box',
+					data:{
+						msg:'2',
+						jsons:{a:1,b:2,c:3}
+					},
+					methods:{
+						
+					}
+				});			
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			{{msg | toDou('12','5')}}
+			<!--{{msg | currency}} vue2.0删除了内置过滤器-->
+			{{jsons}} <!--vue2.0自带json过滤器-->
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/vue1.0.26.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+		<aaa></aaa>
+	</div>
+
+	<script>
+		/*全局组件先定义一个extend,template*/
+		/*组件内放数据,data必须是函数形式，返回一个json对象*/
+		var Aaa=Vue.extend({
+			data(){
+				return {
+					msg:'我是标题'
+				}
+			},
+			methods:{  //组件内加事件
+				change(){
+					this.msg='111';
+				}
+			},
+			template:'<h3 @click="change()">{{msg}}</h3>'
+		});
+		
+		Vue.component('aaa',Aaa);
+
+
+
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				bSign:true
+			}
+		});
+
+	</script>
+</body>
+</html>

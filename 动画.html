@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#div1 {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			
+			.fade-transition {
+				transition: all .5s;
+			}
+			/*进入fade-enter*/
+			.fade-enter {
+				opacity: 0;
+			}
+			/*离开fade-leave*/
+			.fade-leave {
+				opacity: 0;
+				transform: translateX(200px);
+			}
+		</style>
+		<script src="js/vue1.0.26.js"></script>
+		<script>
+			window.onload = function() {
+				new Vue({
+					el: '#box',
+					data: {
+						msg: 'welcome vue',
+						bSign:true
+					},
+					methods:{
+						toggle:function(){
+							this.bSign=!this.bSign;
+						}
+					}
+				});
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<span>{{msg}}</span>
+			<input type="button" value="按钮" @click="toggle()">
+			
+			<!--transition="动画名称"-->
+			<div id="div1" v-show="bSign" transition="fade"></div> 
+		</div>
+	</body>
+
+</html>

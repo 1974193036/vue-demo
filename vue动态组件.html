@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/vue1.0.26.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="button" @click="a='aaa'" value="aaa组件">
+		<input type="button" @click="a='bbb'" value="bbb组件">
+		<input type="button" @click="a='ccc'" value="ccc组件">
+		<component :is="a"></component>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'aaa':{
+					template:'<h2>我是aaa组件</h2>'+'<h6>666</h6>'
+				},
+				'bbb':{
+					template:'<h2>我是bbb组件</h2>'
+				},
+				'ccc':{
+					data() {
+						return {
+							msg: '666',
+							arr:['apple','banana','orange']
+						}
+					},
+					template:'<h6>{{msg}}</h6><ul>'+
+						'<li v-for="val in arr">'+
+							'{{val}}'+
+						'</li>'+
+					'</ul>'
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

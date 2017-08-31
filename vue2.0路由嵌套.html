@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title></title>
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .router-link-active{
+                color: #f60;
+            }
+            .div1{
+                width: 100%;
+                height: 100px;
+                background: yellow;
+            }
+            .com,.acc1{
+                position: relative;
+                display: block;
+                background: #fff;
+                width: 50%;
+                height: 100%;
+                float: left;
+                text-align: center;
+                line-height: 100px;
+                /*border: none;       */     
+            }
+            .com:after,
+            .acc1:after{
+                display: block;
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+               /* background: red;*/
+                width: 100%;
+               /* height: 1px;*/
+                border-bottom: 1px solid rgba(7,17,27,0.1);
+               /* -webkit-transform: scaleY(0.5);
+                    transform: scaleY(0.5);
+                -webkit-transform-origin: 0 0;
+                    transform-origin: 0 0;*/
+            }
+            .div2{
+                width: 100%;
+                height: 200px; 
+                background: #fff;
+            }
+            @media(-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){
+                .border-1px:after{
+                    -webkit-transform: scaleY(0.7);
+                    transform: scaleY(0.7);
+                }
+            }
+            @media(-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){
+                .border-1px:after{
+                    -webkit-transform: scaleY(0.5);
+                    transform: scaleY(0.5);
+                }
+            }
+        </style>
+        <script src="js/vue2.0.3.js"></script>
+        <script src="js/vue-router2.0.1.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <div class="div1">
+                <router-link to="/home" class="com border-1px">主页</router-link>
+                <router-link to="/user" class="com border-1px">用户</router-link>
+            </div>
+            <div class="div2">
+                <router-view></router-view>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    /*准备home,news组件*/
+    var Home={
+        template:'<h3>我是主页</h3>'
+    };
+    var User={
+        template:`
+            <div>
+                <h3>我是用户</h3>
+                <ul>
+                    <li class="acc1"><router-link to="/user/username1">某个用户1</router-link></li>
+                    <li class="acc1"><router-link to="/user/username2">某个用户2</router-link></li>
+                </ul>
+                <div>
+                    <router-view></router-view>
+                </div>
+            </div>
+        `
+    }; 
+    var UserDetail1={
+        template:'<div>我是XX用户111</div>'
+    };
+    var UserDetail2={
+        template:'<div>我是XX用户222</div>'
+    };
+
+    /*配置路由*/
+    var routes=[
+        {path:'/home',component:Home},
+        {
+            path:'/user',
+            component:User,
+            children:[
+                {path:'username1', component:UserDetail1},
+                {path:'username2', component:UserDetail2}
+            ]
+        },
+        {path:'*',redirect:'/home'}
+    ];
+
+    /*生成路由实例*/
+    var router=new VueRouter({
+        routes:routes
+    });
+    //最后挂到vue上
+    new Vue({
+        router:router,
+        el:'#box'
+    });
+</script>

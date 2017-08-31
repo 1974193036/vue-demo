@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="css/animate.css">
+        <style type="text/css">
+            p{
+                width:100px;
+                height:100px;
+                background: red;
+                margin:10px auto;
+            }
+        </style>
+        <script src="js/vue2.0.3.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="点击显示隐藏" @click="show=!show">
+            <!-- 多个动画元素用transition-group -->
+            <transition-group enter-active-class="animated bounceInLeft" leave-active-class="animated bounceInRight">
+                <p v-show="show" :key="1"></p>
+                <p v-show="show" :key="2"></p>
+            </transition-group>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+           show:false
+        },
+        methods:{
+           
+        }
+    })
+</script>

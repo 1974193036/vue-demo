@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style></style>
+    <script src="js/vue2.0.3.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <h1>{{msg}}</h1>
+        <my-aaa></my-aaa>
+    </div>
+    <!--<template id="aaa">
+            <div>
+                <h3>我是标题3</h3>
+                <strong>我是加粗标签</strong>
+            </div>
+        </template>-->
+</body>
+
+</html>
+<script>
+/*var Aaa=Vue.extend({
+        template:'<h3>我是标题3</h3>'
+    });*/
+/*Vue2.0不支持片段写法,需要一个根元素(div)包裹*/
+Vue.component('my-aaa', {
+    template: '<div><h3>我是组件</h3><strong>我是加粗标签</strong></div>'
+});
+
+new Vue({
+    el: '#box'
+    data: {
+        msg: 'welcome vue2.0'
+    }
+});
+</script>

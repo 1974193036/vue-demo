@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.red{
+				color: red;
+			}
+			.yellow{
+				background: yellow;
+			}
+		</style>
+		<script src="js/vue1.0.26.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#box',
+					data:{
+						url:'img/hov_bule.png',
+						w:'100',
+						h:'100',
+						t:'这是图片',
+						red:'red',
+						y:'yellow',
+						isRed:true,
+						isYellow:true,
+						json:{
+							red:true,
+							yellow:false
+						},
+						c:{color:'blue'},
+						d:{backgroundColor:'red'}
+					},
+					methods:{
+						show:function(ev){
+							alert(ev.clientX);
+						},
+						maopao1:function(ev){
+							alert(1);
+							/*ev.cancelBubble=true;*//*阻止冒泡*/
+						},
+						maopao2:function(){
+							alert(2);
+						},
+						moren:function(ev){
+							alert('默认行为');
+							/*ev.preventDefault();*//*阻止默认行为*/
+						},
+						jianpan:function(ev){
+							alert(ev.keyCode);				
+						},
+						jianpan1:function(ev){
+							alert('按回车了');	
+						}
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<!--点击事件-->
+			<input type="button" value="按钮" v-on:click="show($event)"/>
+			<input type="button" value="按钮" @click="show($event)"/>
+			
+			<!--冒泡-->
+			<div @click="maopao2()">
+				<input type="button" value="冒泡" @click.stop="maopao1($event)"/> <!--阻止冒泡-->
+			</div>
+			
+			<!--系统自带的默认行为-->
+			<input type="button" value="默认行为" @contextmenu.prevent="moren($event)"/> <!--阻止默认行为-->
+			
+			<!--键盘事件-->
+			<input type="text" @keydown="jianpan($event)"/>  
+			<input type="text" @keyup.enter="jianpan1($event)"/> 
+			
+			<!--属性-->
+			<img v-bind:src="url" width="100" height="100">
+			<img :src="url" :width="w" :height="h" :title="t">
+			<h1 :class="[red,y]">文字颜色</h1>   <!--red,y是data数据-->
+			<h2 :class="{red:isRed,yellow:isYellow}">文字颜色</h2>   <!--red,yellow是class-->
+			<h3 :class="json">文字颜色</h3>
+			<h4 :style="[c,d]">文字颜色</h4>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/animate.css">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .router-link-active {
+        color: #f60;
+    }
+
+    .div1 {
+        width: 100%;
+        height: 100px;
+        background: yellow;
+    }
+
+    .com,
+    .acc1 {
+        position: relative;
+        display: block;
+        background: gray;
+        width: 25%;
+        height: 100%;
+        float: left;
+        text-align: center;
+        line-height: 100px;
+        border: none;
+        /* border-bottom: 1px solid red;*/
+    }
+
+    .com:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: red;
+        width: 100%;
+        height: 1px;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+
+    .div2 {
+        width: 100%;
+        height: 200px;
+        background: gold;
+    }
+    </style>
+    <script src="js/vue2.0.3.js"></script>
+    <script src="js/vue-router2.0.1.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="button" value="添加一个路由" @click="push">
+        <input type="button" value="替换一个路由" @click="replace">
+        <div class="div1">
+            <router-link to="/home" class="com">主页</router-link>
+            <router-link to="/user" class="com">用户</router-link>
+        </div>
+        <div class="div2">
+            <transition enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
+                <router-view></router-view>
+            </transition>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+/*准备home,news组件*/
+var Home = {
+    template: '<h3>我是主页</h3>'
+};
+var User = {
+    template: `
+            <div>
+                <h3>我是用户</h3>
+                <ul>               
+                    <li class="acc1"><router-link to="/user/username1">某个用户1</router-link></li>
+                    <li class="acc1"><router-link to="/user/username2">某个用户2</router-link></li>
+                    <li class="acc1"><router-link to="/user/blue/age/80">Blue</router-link></li>
+                    <li class="acc1"><router-link to="/user/eric/age/70">Eric</router-link></li>
+                </ul>
+                <div>
+                    <router-view></router-view>
+                </div>
+            </div>
+        `
+};
+var UserDetail1 = {
+    template: '<div>我是XX用户111</div>'
+};
+var UserDetail2 = {
+    template: '<div>我是XX用户222</div>'
+};
+var UserDetail3 = {
+    template: '<div>{{$route.params}}</div>'
+};
+/*配置路由*/
+var routes = [
+    { path: '/home', component: Home },
+    {
+        path: '/user',
+        component: User,
+        children: [
+            { path: 'username1', component: UserDetail1 },
+            { path: 'username2', component: UserDetail2 },
+            { path: ':username/age/:age', component: UserDetail3 }
+        ]
+    },
+    { path: '*', redirect: '/home' }
+];
+
+/*生成路由实例*/
+var router = new VueRouter({
+    routes: routes
+});
+//最后挂到vue上
+new Vue({
+    router,
+    el: '#box',
+    methods: {
+        push() {
+            router.push({ path: 'home' });
+        },
+        replace() {
+            router.replace({ path: 'user' });
+        }
+    }
+});
+</script>
