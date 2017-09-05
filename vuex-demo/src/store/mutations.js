@@ -1,23 +1,34 @@
 import {
 	INCREMENT,
 	DECREMENT
-} from './types'
-import getters from './getters'
+}from './types.js'
 
-const state = {
-	count: 20
+import getters from './getters.js' //获取数据
+
+var state={  //初始数据,放置数据
+	count: 0
 };
 
-const mutations = {
-	[INCREMENT](state) {
-		state.count++;
+const mutations={ //处理数据变化,写一些公共函数
+	// incrementss(state){ 
+	// 	state.count+=2;
+	// },
+	// decrementss(state){
+	// 	state.count--;
+	// }
+	[INCREMENT](state){ 
+		state.count+=2;
 	},
-	[DECREMENT](state) {
+	[DECREMENT](state){
 		state.count--;
 	}
 };
 
-export default {
+
+
+
+
+export default{
 	state,
 	mutations,
 	getters

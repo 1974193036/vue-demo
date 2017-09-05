@@ -1,31 +1,47 @@
-import * as types from './types'
+import * as types from './types.js' 
 
-export default {
-	increment: ({
-		commit
-	}) => {
-		commit(types.INCREMENT);
+export default{
+	increment:({commit})=>{  
+	 	commit(types.INCREMENT);
 	},
-	decrement: ({
-		commit
-	}) => {
+	decrement:({commit})=>{  
 		commit(types.DECREMENT);
 	},
-	clickOdd: ({
-		commit,
-		state
-	}) => {
-		if (state.mutations.count % 2 == 0) {
+	clickOdd:({commit,state})=>{
+		console.log(state); 
+		console.log(state.mutations.count);
+		if(state.mutations.count%2==0){
 			commit(types.INCREMENT);
-		}
+		};
 	},
-	clickAsync: ({
-		commit
-	}) => {
+	clickAsync:({commit})=>{  
 		new Promise((resolve) => {
-			setTimeout(function() {
-				commit(types.INCREMENT);
-			}, 1000);
-		})
+            setTimeout(function() {
+                commit(types.INCREMENT);
+                resolve();
+            }, 1000);
+        });
 	}
-}
+
+	// increment:({commit})=>{  
+	// 	console.log(commit);
+	// 	commit('incrementss');
+	// },
+	// decrement:({commit})=>{  
+	// 	commit('decrementss');
+	// },
+	// clickOdd:({commit,state})=>{ 
+	// 	console.log(state.mutations.count);
+	// 	if(state.mutations.count%2==0){
+	// 		commit('incrementss');
+	// 	};
+	// },
+	// clickAsync:({commit})=>{  
+	// 	new Promise((resolve) => {
+ //            setTimeout(function() {
+ //                commit('incrementss');
+ //                resolve();
+ //            }, 1000);
+ //        });
+	// }
+};
