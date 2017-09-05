@@ -18,7 +18,7 @@
             return time.getTime() < Date.now() - 8.64e7;
           }
         },
-        value1: '2017-07-26'
+        value1: new Date()
       };
     }
   };
